@@ -1,19 +1,19 @@
 class Atm:
     def __init__(self):
-        """
-        Initializes the ATM with a default PIN (None) and balance (0),
-        then calls the menu method to start user interaction.
-        """
-        self.__pin = None  # attribute
-        self.__balance = 0  #  balance attribute
+        
+        # Initializes the ATM with a default PIN (None) and balance (0),
+        # then calls the menu method to start user interaction.
+        
+        self.__pin = None  # pin 
+        self.__balance = 0  #  balance 
         self.__menu()  # Start the ATM menu
 
     def __menu(self):
-        """
-        Displays the ATM menu and handles user input to navigate through different options.
-        """
+        
+        # Displays the ATM menu and handles user input to navigate through different options.
+        
         while True:
-            print("\n--- ATM Menu ---")
+            print("\n ATM Menu")
             print("1. Generate PIN")
             print("2. Change PIN")
             print("3. Check Balance")
@@ -40,26 +40,21 @@ class Atm:
                 print("Invalid option. Please try again.")
 
     def __get_pin(self):
-        """
-        Prompts the user to enter a 4-digit PIN and validates its format.
-
-        Returns:
-            str: The valid 4-digit PIN entered by the user, or None if invalid.
-        """
+    
+        # Prompts the user to enter a 4-digit PIN
+        
         pin = input("Enter a 4-digit PIN: ")
         if pin.isdigit() and len(pin) == 4:
             return pin
         else:
-            print("Invalid PIN format. Please ensure it's a 4-digit number.")
+            print("Invalid PIN. Please ensure it's a 4-digit number.")
             return None
 
     def __verify_pin(self):
-        """
-        Prompts the user to enter the current PIN and checks if it matches the stored PIN.
+        
+        # Prompts the user to enter the current PIN and checks if it matches the stored PIN.
 
-        Returns:
-            bool: True if the entered PIN matches the stored PIN, False otherwise.
-        """
+    
         if self.__pin is None:
             print("No PIN is set. Please generate a PIN first.")
             return False
@@ -71,9 +66,9 @@ class Atm:
             return False
 
     def __generate_pin(self):
-        """
-        Allows the user to generate a new PIN if one is not already set.
-        """
+        
+        # Allows the user to generate a new PIN if one is not already set.
+        
         if self.__pin is not None:
             print("PIN is already set. Use the 'Change PIN' option to modify it.")
             return
@@ -87,9 +82,9 @@ class Atm:
                 print("PINs do not match. PIN generation failed.")
 
     def __change_pin(self):
-        """
-        Allows the user to change the existing PIN after verifying the current PIN.
-        """
+        
+        # Allows the user to change the existing PIN after verifying the current PIN.
+        
         if self.__verify_pin():
             new_pin = self.__get_pin()
             if new_pin:
@@ -101,17 +96,17 @@ class Atm:
                     print("PINs do not match. PIN change failed.")
 
     def __check_balance(self):
-        """
-        Displays the current account balance after successful PIN verification.
-        """
+        
+        # Displays the current account balance after successful PIN verification.
+        
         if self.__verify_pin():
             print(f"Your current balance is: ${self.__balance}")
 
     def __withdraw(self):
-        """
-        Allows the user to withdraw money from the account after PIN verification.
-        Ensures that the withdrawal amount is a multiple of 100 and does not exceed the current balance.
-        """
+        
+       # Allows the user to withdraw money from the account after PIN verification.
+       # Ensures that the withdrawal amount is a multiple of 100 and does not exceed the current balance.
+        
         if self.__verify_pin():
             try:
                 amount = int(input("Enter the amount to withdraw (multiple of 100): "))
@@ -128,10 +123,10 @@ class Atm:
                 print("Invalid input. Please enter a numeric value.")
 
     def __deposit(self):
-        """
-        Allows the user to deposit money into the account after PIN verification.
-        Ensures that the deposit amount is a multiple of 100 and greater than zero.
-        """
+    
+        #Allows the user to deposit money into the account after PIN verification.
+        # Ensures that the deposit amount is a multiple of 100 and greater than zero.
+        
         if self.__verify_pin():
             try:
                 amount = int(input("Enter the amount to deposit (multiple of 100): "))
@@ -148,4 +143,3 @@ class Atm:
 # start the program
 if __name__ == "__main__":
     Atm()
-
